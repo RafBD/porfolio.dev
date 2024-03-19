@@ -1,0 +1,83 @@
+---
+import HtmlIcon from '../icons/Html.astro'
+import JsIcon from '../icons/JavaScript.astro'
+import CssIcon from '../icons/CSS.astro'
+import JavaIcon from '../icons/Java.astro'
+import SQLServerIcon from '../icons/SqlServer.astro'
+import TailwindIcon from '../icons/Tailwind.astro'
+
+
+const TAGS = {
+    HTML: {
+        name: 'HTML',
+        class: 'bg-[#e44d26] text-white font-semibold flex items-center',
+        icon: HtmlIcon,
+        
+    },
+    JavaScript: {
+        name: 'JavaScript',
+        class: 'bg-[#e4a125]/80 text-white font-semibold flex items-center',
+        icon: JsIcon,
+        
+    },
+    CSS: {
+        name: 'CSS',
+        class: 'bg-[#214ce5] text-white font-semibold flex items-center',
+        icon: CssIcon,
+        
+    },
+    Java: {
+        name: 'Java',
+        class: 'bg-[#001e44] text-white font-semibold flex items-center',
+        icon: JavaIcon,
+        
+    },
+    SQLServer: {
+        name: 'SQL Server',
+        class: 'bg-[#9aa5b1] text-black font-semibold flex items-center',
+        icon: SQLServerIcon,
+        
+    },
+    Tailwind: {
+        name: 'TailwindCSS',
+        class: 'bg-[#003159] text-white font-semibold flex items-center',
+        icon: TailwindIcon,
+        
+    },
+}
+const PROJECTS = [
+  {
+    title: 'Registro de Asistencia',
+    description: 'Sistema de registro de asistencia desarrollado como proyecto final integrador. El sistema permite a los profesores llevar un control de la asistencia de sus alumnos. Cuenta con un sistema de login y registro de usuarios. Creado desde cero con Java y SQL Server.',
+    github: 'https://github.com/RafBD/RegistroAsistencia',
+    image: '/public/reg-asis.png',
+    tags: [TAGS.Java, TAGS.SQLServer]
+  },
+  {
+    title: 'ToduList',
+    description: 'Aplicación de lista de tareas. Permite crear y eliminar tareas. Las listas se guardan en el local storage del navegador. Creado desde cero con HTML, CSS, TailwindCSS y JavaScript.',
+    link: "https://todu-list.vercel.app/",
+    github: 'https://github.com/RafBD/todoList',
+    image: '/public/todu-list.png',
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.Tailwind, TAGS.JavaScript]
+  },
+]
+---
+{
+    PROJECTS.map(({image, title, description, tags, })=> (
+        <article>
+            <h3 class="text-2xl font-semibold text-purple-200/100 mb-2">{title}</h3>
+            <p class="text-lg mb-2 text-pretty">{description}</p>
+            <ul class="flex gap-x-4 flex-row">
+                {tags.map(tag => (
+                    <li>
+                        <span class={`flex gap-x-2 rounded-full text-sm ${tag.class} py-1 px-2 bg-gray`}>
+                            <tag.icon class="size-7"></tag.icon>{tag.name}
+                        </span>
+                    </li>
+                ))}
+            </ul>
+            <img class="rounded shadow-2xl shadow-white/20" src={image} alt={`Captura de Pantalla del proyecto ${image}`}>
+        </article>
+    ))
+}
